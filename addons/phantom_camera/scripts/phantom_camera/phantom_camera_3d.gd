@@ -295,11 +295,12 @@ enum FollowLockAxis {
 	set = set_inactive_update_mode,
 	get = get_inactive_update_mode
 
+
 ## Adds an editor button that positions and rotates the [param PhantomCamera3D] to match the 3D viewport's position and rotation.[br][br]
 ## This editor button is not visible if the [param PhantomCamera3D] has a [member follow_mode] value set.[br]
 ## If a [member look_at_mode] value is set, then only the viewport's position will be transferred over.[br][br]
 ## [b]Note[/b]: This is only functional in the editor.
-@export_tool_button("Align Transform to View")
+@export_tool_button("Align Transform to View", "CenterView")
 var align_transform_to_view_action: Callable = func():
 	var undo_redo = EditorInterface.get_editor_undo_redo()
 	var property: StringName = &"global_transform"
@@ -307,6 +308,7 @@ var align_transform_to_view_action: Callable = func():
 	undo_redo.add_do_property(self, property, EditorInterface.get_editor_viewport_3d().get_camera_3d().global_transform)
 	undo_redo.add_undo_property(self, property, global_transform)
 	undo_redo.commit_action()
+
 
 ## Determines which layers this [param PhantomCamera3D] should be able to communicate with [PhantomCameraHost] nodes.[br]
 ## A corresponding layer needs to be set on the [PhantomCameraHost] node.
